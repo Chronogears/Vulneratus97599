@@ -28,6 +28,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
+        queries: +security-and-quality,./codeql/example.ql
         # packs: ./codeql/codeql-pack.yml
 
     - name: Setup .NET
