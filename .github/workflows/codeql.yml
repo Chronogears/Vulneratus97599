@@ -5,8 +5,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * 0'
+#   schedule:
+#     - cron: '0 0 * * 0'
 
 jobs:
   analyze:
@@ -23,17 +23,22 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
+
     - name: Restore dependencies
       run: dotnet restore Vulneratus.sln
+
     - name: Build
       run: dotnet build Vulneratus.sln --no-restore --configuration Release
+      
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
