@@ -4,7 +4,7 @@ warnOnImplicitThis: false
 name: vulneratus/codeql-custom-queries-csharp
 version: 1.0.0
 dependencies:
-  codeql/csharp-all: "^0.11.4"
+  codeql/csharp-all: "^1.3.4"
 
 defaultSuite:
   - query: example.ql
