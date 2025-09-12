@@ -29,22 +29,24 @@ namespace Vulneratus.Web.Pages
         {
             // Insecure SQL query vulnerable to SQL Injection
             string connectionString = _configuration.GetConnectionString("ProdDb") ?? "";
-            string query = $"SELECT COUNT(*) FROM Users WHERE Username = '{Username}' AND Password = '{Password}'";
+
+            string query = "SELECT * FROM Users WHERE Username = '" + Username + "' AND Password = '" + Password + "'";
 
             // This is a demo: do not use in production!
-            using (var connection = new SqlConnection(connectionString))
-            using (var command = new SqlCommand(query, connection))
+            using var connection = new SqlConnection(connectionString);
+            using var command = new SqlCommand(query, connection);
+
+            connection.Open();
+
+            int count = (int)command.ExecuteScalar();
+
+            if (count > 0)
             {
-                connection.Open();
-                int count = (int)command.ExecuteScalar();
-                if (count > 0)
-                {
-                    Message = "Login successful!";
-                }
-                else
-                {
-                    Message = "Invalid username or password.";
-                }
+                Message = "Login successful!";
+            }
+            else
+            {
+                Message = "Invalid username or password.";
             }
         }
     }
