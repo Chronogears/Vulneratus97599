@@ -1,7 +1,4 @@
----
-library: false
-warnOnImplicitThis: false
-name: vulneratus/codeql-custom-queries-csharp
+name: vulneratus-codeql-pack
 version: 1.0.0
 dependencies:
   codeql/csharp-all: "^1.3.4"
@@ -9,3 +6,6 @@ dependencies:
 defaultSuite:
   - query: example.ql
   - query: +security-and-quality
+
+codeql:
+  warnOnImplicitThis: false
