@@ -28,7 +28,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        queries: ./codeql/example.ql +security-extended
+        queries: ./codeql/example.ql, +security-extended
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
