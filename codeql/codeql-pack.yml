@@ -8,4 +8,4 @@ dependencies:
 
 defaultSuite:
   - query: example.ql
-  - query: security-extended
+  - query: +security-extended
