@@ -12,6 +12,15 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else 
+{
+    app.UseDeveloperExceptionPage();
+}
+
+if (System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE") == "AMD64")
+{
+    app.Logger.LogInformation("Running in a 64-bit process.");
+}
 
 app.UseHttpsRedirection();
 
